@@ -2,6 +2,9 @@ import React from 'react';
 import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
 import axios from 'axios';
+import Table, { TableBody, TableCell, TableHeader, TableRow, TableHeaderColumn } from 'material-ui/Table';
+
+
 
 class EmailResponse extends React.Component {
 	constructor() {
@@ -35,6 +38,7 @@ class EmailResponse extends React.Component {
 			});
 		})	
 	}	
+
 		
 
 render() {
@@ -49,19 +53,27 @@ render() {
 			</Button>
 		 
 		</div>
-
-		
+	
 		<div>
 			<Button variant="raised" onClick={this.getData}>
 				Get Data
 			</Button>
-
-		<div>
-				
-			{this.state.data[0]}
-			{this.state.usr_hr}
-			</div>
+	
 		</div>
+	
+		<Table>
+			<TableBody>
+				{this.state.usr_hr.map(n => {
+				return(
+				<TableRow key = {n}>
+				 <TableCell>{n}</TableCell>
+				</TableRow>
+			);
+			})}
+	
+			</TableBody>	
+	
+		</Table>
 	</div>
 	);
 	}	
