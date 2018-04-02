@@ -2,7 +2,7 @@ import React from 'react';
 import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
 import axios from 'axios';
-import Table, { TableBody, TableCell, TableHeader, TableRow, TableHeaderColumn } from 'material-ui/Table';
+import Table, { TableBody, TableCell, TableRow } from 'material-ui/Table';
 
 
 
@@ -10,9 +10,9 @@ class EmailResponse extends React.Component {
 	constructor() {
 		super();
 		this.state = {
-			"usr_email": null, 
-			"data": [null],
-			"usr_hr": [null]
+			"tuple": [null],
+			"usr_hr": [null],
+			"timestamp":[null]
 		};
 	}
 
@@ -30,16 +30,18 @@ class EmailResponse extends React.Component {
 		var email_lookup = this.state.nameTextField
 		var url_lookup = url_base.concat(email_lookup)
 		axios.get(url_lookup).then( (response) => {
-			console.log(response);
-			console.log(response.data.all_hr)
+			//console.log(response);
+			//console.log(response.data.all_hr)
+			//console.log(response.data.timestamp)
+			console.log([response.data.timestamp, response.data.all_hr])
 			this.setState({
-				"data": response.data,
-				"usr_hr": response.data.all_hr
+				"tuple": [response.data.all_hr, response.data.timestamp],
+				"usr_hr": response.data.all_hr,
+				"timestamp":response.data.timestamp		
 			});
 		})	
-	}	
-
-		
+	}			
+	
 
 render() {
 	return (
@@ -48,32 +50,31 @@ render() {
 			<TextField
 				value={this.state.nameTextField}
 				onChange={this.onNameTextFieldChange}/>
-			<Button onClick={this.onButtonClick}>
-				Click HERE to enter data
-			</Button>
-		 
-		</div>
-	
-		<div>
 			<Button variant="raised" onClick={this.getData}>
-				Get Data
+				Click HERE to retrieve data
 			</Button>
-	
+		
 		</div>
 	
 		<Table>
+			<TableRow>
+			<TableCell>TimeStamp</TableCell>
+			<TableCell>HeartRates</TableCell>
+			</TableRow>
 			<TableBody>
-				{this.state.usr_hr.map(n => {
+				{this.state.tuple.map(n =>{
+				
 				return(
-				<TableRow key = {n}>
+				<TableRow key={n}>
 				 <TableCell>{n}</TableCell>
+			
 				</TableRow>
 			);
+	
 			})}
 	
 			</TableBody>	
-	
-		</Table>
+		</Table>	
 	</div>
 	);
 	}	

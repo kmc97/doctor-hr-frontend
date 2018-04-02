@@ -20,7 +20,7 @@ class ButtonData extends React.Component {
 	}
 
 	getData = () => {
-	axios.get("http://vcm-3738.vm.duke.edu:5000/api/heart_rate/katierox@email.com").then( (response) => {
+axios.get("http://adpl.suyash.io/api/sites").then( (response) => {
 			console.log(response);
 			console.log(response.status);
 			this.setState({"data": response.data});
