@@ -1,7 +1,9 @@
 # doctor-hr-frontend
 Basic Heart Rate Viewer
 
-UI that interfaces with previous assignments server connected to MongosDB database. To use, make sure that both the MongosDB and Gunicorn connections are up and running (you will be connecting to http://vcm-3738.vm.duke.edu:5000/)
+UI that interfaces with previous assignments server connected to MongosDB database. To use, make sure that both the MongosDB and Gunicorn connections are up and running on a screen in your virtual machine (you will be connecting to http://vcm-3738.vm.duke.edu:5000/)
+
+Next, you must run "npm run start" to launch the React App.
 
 To use, simply type the user email into the text box, then click the button to retrieve the data. A table showing all heart rates and the time stamps of the heart rates is created. In addition, the maximum heart rate value is returned at the top of the table.
 
